@@ -1,0 +1,25 @@
+docker run -d -v D:\Work\ws\k8s-docker\istio-study\raw-istio\api-server.js:/tmp/api-server.js -p 80:8080 node node /tmp/api-server.js
+
+docker run -d -t node
+
+docker run -d -p 8080:3000 magalixcorp/birthdaygreeter
+
+
+docker run -d -v D:\Work\ws\k8s-docker\istio-study\raw-istio\envoy.yaml:/envoy-config/envoy.yaml -p 8090:80 -p 8081:8081 envoyproxy/envoy-alpine:v1.13.3 -c /envoy-config/envoy.yaml
+
+
+
+curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' localhost:8090/hello/Magalixcorp
+curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' localhost:9080/hello/Magalixcorp
+curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' 172.17.0.1:3000/hello/Magalixcorp
+
+
+
+kubectl port-forward  service/bdgreeter-svc 80:8080
+
+kubectl port-forward  service/bdgreeter-svc 80:8080
+
+kubectl port-forward  service/bdgreeter-svc 9080:80
+
+
+docker run -d -v D:\Work\ws\k8s-docker\istio-study\raw-istio\envoy.yaml:/envoy-config/envoy.yaml -p 8090:80 -p 8081:8081 envoyproxy/envoy-alpine:v1.13.3 -c /envoy-config/envoy.yaml
