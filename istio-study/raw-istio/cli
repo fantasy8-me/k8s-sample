@@ -9,7 +9,7 @@ docker run -d -v D:\Work\ws\k8s-docker\istio-study\raw-istio\envoy.yaml:/envoy-c
 
 
 
-curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' localhost:8090/hello/Magalixcorp
+curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' localhost/hello/Magalixcorp
 curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' localhost:9080/hello/Magalixcorp
 curl -XPOST --data '{"dateOfBirth":"2020-01-25"}' 172.17.0.1:3000/hello/Magalixcorp
 
@@ -20,6 +20,10 @@ kubectl port-forward  service/bdgreeter-svc 80:8080
 kubectl port-forward  service/bdgreeter-svc 80:8080
 
 kubectl port-forward  service/bdgreeter-svc 9080:80
+
+
+#Get token
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | awk '/^default-token-/{print $1}') | awk '$1=="token:"{print $2}'
 
 
 docker run -d -v D:\Work\ws\k8s-docker\istio-study\raw-istio\envoy.yaml:/envoy-config/envoy.yaml -p 8090:80 -p 8081:8081 envoyproxy/envoy-alpine:v1.13.3 -c /envoy-config/envoy.yaml
